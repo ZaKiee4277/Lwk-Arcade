@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--Brought to you by DevinDaboiCorporation-->
+<html>
+    <head>
+        <title>Learn Calculus</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="../../css/fontawesome.css"/>
+        <link rel="stylesheet" href="../../css/otherpages.css"/>
+        <style>
+            #gamesgrid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(7.5vw, 1fr));
+                column-gap: 0.5vw;
+                row-gap: 2vh;
+                margin-bottom: 0;
+            }
+            img {
+                width: 7.6vw;
+                height: 7.6vw;
+                border-radius: 10%;
+                top: 0;
+                margin-top: 0;
+                margin-bottom: 1vh;
+                object-fit: cover;
+            }
+
+            button {
+             transition: transform 0.2s ease;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                width: 7.6vw;
+                height: auto;
+                font-size: 60%;
+                padding: 0 0 0.5vw 0;
+                border-radius: 15px;
+            }
+                     button:hover {
+                transform: scale(1.1);
+}
+            #gamesearchform {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 4vh;
+            }
+            #gamesearchinput {
+				background: none;
+				color: #5EFD28;
+				font-family: inherit;
+				padding: 0px 17px;
+				height: 48px;
+				outline: 2px solid #00FF00;
+				border-radius: 3px;
+				width: 350px;
+				margin-top: 5px;
+				border-radius: 50px;
+				transition: border-radius 0.1s;
+			}
+            input::placeholder {
+				color: #5EFD28;
+			}
+        </style>
+    </head>
+    <body>
+        <form id="gamesearchform" class="flex-center" onsubmit="return false;">
+			<input id="gamesearchinput" autocomplete="off" type="text" placeholder="Search 91 games" />
+		</form>
+        <div id="gamesgrid">
+           
+         
+            <button onclick="openGame('bitlife/bitlife.html')"> <img src="img/4.webp" draggable="false">Bitlife</button>
+            <button onclick="openGame('blockblast/blockblast.html')"> <img src="img/5.webp" draggable="false">Block Blast</button>
+            <button onclick="openGame('crossy-road/crossy-road.html')"> <img src="img/crossy-road.webp" draggable="false">Crossy Road</button>
+             <button onclick="openGame('cut-the-rope/cut-the-rope.html')"> <img src="img/cut-the-rope.webp" draggable="false">Cut The Rope</button>
+            <button onclick="openGame('dinogame/dinogame.html')"> <img src="img/dinogame.webp" draggable="false">Dino Game</button>
+            <button onclick="openGame('flappy-bird/flappy-bird.html')"> <img src="img/flappy-bird.webp" draggable="false">Flappy Bird</button>
+            <button onclick="openGame('fnaf1/fnaf1.html')"> <img src="img/fnaf1.webp" draggable="false">FNAF 1</button>
+            <button onclick="openGame('fnaf2/fnaf2.html')"> <img src="img/fnaf2.webp" draggable="false">FNAF 2</button>
+            <button onclick="openGame('fnaf3/fnaf3.html')"> <img src="img/fnaf3.webp" draggable="false">FNAF 3</button>
+            <button onclick="openGame('fnaf4/fnaf4.html')"> <img src="img/fnaf4.webp" draggable="false">FNAF 4</button>
+            <button onclick="openGame('fruitninja/fruitninja.html')"> <img src="img/fruitninja.webp" draggable="false">Fruit Ninja</button>
+            <button onclick="openGame('GiraffesVolleyball/GiraffesVolleyball.html')"> <img src="img/giraffevolleyball.webp" draggable="false">Giraffes Volleyball</button>
+            <button onclick="openGame('going-balls/going-balls.html')"> <img src="img/going-balls.webp" draggable="false">Going Balls</button>
+           <button onclick="openGame('minecraft/minecraft.html')"> <img src="img/minecraft.webp" draggable="false">Minecraft</button>
+            <button onclick="openGame('minesweeper/minesweeper.html')"> <img src="img/minesweeper.webp" draggable="false">Minesweeper</button>
+             <button onclick="openGame('solitaire/solitaire.html')"> <img src="img/solitaire.webp" draggable="false">Solitaire</button>
+             <button onclick="openGame('SubwaySurfers/subwaysurfers.html')"> <img src="img/25.webp" draggable="false">Subway Surfers</button>
+            <button onclick="openGame('superhot/superhot.html')"> <img src="img/superhot.webp" draggable="false">Superhot</button>
+            <button onclick="openGame('Tetris/tetrisgame.html')"> <img src="img/26.webp" draggable="false">Tetris</button> <!--the first ever ddc game🥹 -->
+            <button onclick="openGame('tombofthemask/tombofthemask.html')"> <img src="img/tombofthemask.webp" draggable="false">Tomb of the Mask</button>
+            <button onclick="openGame('volley-random/volley-random.html')"> <img src="img/volley-random.webp" draggable="false">Volley Random</button>
+            <button onclick="openGame('Windowkill/Windowkill.html')"> <img src="img/30.webp" draggable="false">Windowkill</button>
+            <button onclick="openGame('Wordle/Wordle.html')"> <img src="img/wordle.webp" draggable="false">Wordle</button>
+            <button onclick="openGame('WorldsHardestGame/whg.html')"> <img src="img/29.webp" draggable="false">WHG</button>
+                      <p id="no-results">No results...</p>
+        </div>
+    </body>
+    <script>
+        const searchInput = document.getElementById('gamesearchinput');
+        const grid = document.getElementById('gamesgrid');
+        const noResults = document.getElementById('no-results');
+        noResults.style.display = 'none';
+
+        searchInput.addEventListener('input', function () {
+            const query = this.value.trim().toLowerCase();
+            const buttons = grid.querySelectorAll('button');
+            let visibleCount = 0;
+            buttons.forEach(btn => {
+                const name = btn.textContent.trim().toLowerCase();
+                const matches = !query || name.includes(query);
+                btn.style.display = matches ? '' : 'none';
+                if (matches) {
+                    visibleCount++
+                }
+            });
+
+            noResults.style.display = visibleCount == 0 ? 'block' : 'none';
+        });
+        function openGame(url) {
+            const win = window.open();
+            win.document.open();
+            win.document.write('<!DOCTYPE html><html><head><style>*{margin:0;padding:0;overflow:hidden;}html,body{width:100%;height:100%;background:black;}</style></head><body></body></html>');
+            win.document.close();
+            const iframe = win.document.createElement("iframe");
+            iframe.style.cssText = `
+                border: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                display: block;
+            `;
+            iframe.src = url;
+            win.document.body.appendChild(iframe);
+        }
+    </script>
+</html>
